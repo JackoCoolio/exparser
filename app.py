@@ -32,7 +32,11 @@ def init_argparse() -> ArgumentParser:
 def main(parser=init_argparse(), argv=sys.argv, should_print=True) -> str:
     args = parser.parse_args(argv)
 
-    ex = Expression.parse(" ".join(args.expression))
+    if (len(args.expression) == 1):
+        ex = Expression.parse(input("> "))
+    else:
+        ex = Expression.parse(" ".join(args.expression[1:]))
+
     result = ex.calculate().to_string(args.float_only)
     if should_print:
         print(result)
