@@ -142,7 +142,7 @@ class Expression(Calculatable):
 
       # print("\t%sChar at %i: '%s'" % ("\t" * indent, i, char))
 
-      if is_digit(char):
+      if is_digit(char) or char == ".":
         working_digit += char
         building_digit = True
       else:
