@@ -2,6 +2,11 @@ from __future__ import annotations
 from typing import List, Tuple, Type
 from Rational import Calculatable, Rational, is_digit
 from enum import Enum, auto
+import re
+
+
+# ignore commas and underscores
+IGNORE_REGEX = r"[,_]"
 
 
 def find_matching_parens(s: str, i: int) -> int:
@@ -130,7 +135,7 @@ class Expression(Calculatable):
 
   @staticmethod
   def parse(s: str, indent: int = 0) -> Expression:
-    s = s.replace(" ", "")
+    s = re.sub(IGNORE_REGEX, "", s)
     # print("%sParsing '%s'" % ("\t" * indent, s))
     ex = Expression()
 
